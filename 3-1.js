@@ -136,6 +136,15 @@ db.usuarios.updateOne({ nome: "João" }, { $set: { idade: 26 } });
 // Usando o operador $inc para incrementar o valor de um campo numérico
 db.usuarios.updateOne({ nome: "João" }, { $inc: { idade: 1 } });
 
+//Usando o perador set para inserir um campo
+db.usuarios.updateMany({ nome: "Pamela" }, { $set: { "viagens": 0 } });
+
+//Usando o operador set para inserir o campo "interesses" (um array) com o valor culinaria
+db.usuarios.updateMany({ nome: "Pamela" }, { $set: { "interesses": ["culinaria"] } });
+
+////Usando o operador push para adicionarvalor o campo "interesses" (um array)
+db.usuarios.updateMany({ nome: "Pamela" }, { $push: { "interesses": "cerveja" } });
+
 // Usando o operador $rename para renomear um campo existente
 db.usuarios.updateOne({ nome: "João" }, { $rename: { "endereco.rua": "endereco.nomeRua" } });
 
