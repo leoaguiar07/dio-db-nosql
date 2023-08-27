@@ -160,36 +160,49 @@ db.usuarios.deleteMany({ cidade: "São Paulo" });
 
 
 // Operadores Lógicos
-db.usuarios.find({ $and: [{ idade: { $gte: 18 } }, { cidade: "São Paulo" }] });
+    //IGUALDADE
+    db.usuarios.deleteOne({ nome: "João" });
+
+    //
+    db.usuarios.find({ $and: [{ idade: { $gte: 18 } }, { cidade: "São Paulo" }] });
 
 db.usuarios.find({ $or: [{ idade: { $lt: 18 } }, { cidade: "Rio de Janeiro" }] });
 
 db.usuarios.find({ idade: { $not: { $eq: 25 } } });
 
 // Operadores de Comparação
+
+//==
 db.usuarios.find({ idade: { $eq: 25 } });
 
+//!=
 db.usuarios.find({ idade: { $ne: 30 } });
 
+//>
 db.usuarios.find({ idade: { $gt: 30 } });
 
+//>=
 db.usuarios.find({ idade: { $gte: 30 } });
 
+//<
 db.usuarios.find({ idade: { $lt: 30 } });
 
+//<=
 db.usuarios.find({ idade: { $lte: 30 } });
 
+//in (contém) busca em array
 db.usuarios.find({ cidade: { $in: ["São Paulo", "Rio de Janeiro"] } });
 
+//nin (não contém) busca em array
 db.usuarios.find({ cidade: { $nin: ["São Paulo", "Rio de Janeiro"] } });
 
 
-// Projeção
+// Projeção (definir quais campos são retornados na consulta)
 db.usuarios.find({}, { nome: 1, idade: 1 })
 
 // Ordenação
 db.usuarios.find().sort({ idade: 1 })
-// Limitação
+// Limitação (limita o número de documentos retornados)
 db.usuarios.find().limit(10)
-// Paginação
+// Paginação - retorno por demanda
 db.usuarios.find().skip(10).limit(5)
